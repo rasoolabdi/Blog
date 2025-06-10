@@ -1,17 +1,27 @@
-import { getPostBySlug } from "@/services/postServices";
+import { getPostBySlug, getPosts } from "@/services/postServices";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export async function generateMeatadata({ params }) {
-    const post = await getPostBySlug(params.postSlug);
+    const post = await getPostBySlug(params.slug);
     return {
         title: `پست ${post.title}`
     }
 }
 
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+    const posts = await getPosts();
+    const slugs = posts.map((post) => {
+        return { slug: post.slug }
+    });
+    return slugs;
+};
+
 
 async function SinglePost({ params }) {
-    const post = await getPostBySlug(params.postSlug);
+    const post = await getPostBySlug(params.slug);
     if(!post) notFound();
 
     return (
