@@ -9,6 +9,14 @@ const nextConfig = {
                 pathname: "/uploads/**"
             }
         ]
+    },
+    logging: {
+        fetches: {
+            fullUrl: true
+        }
+    },
+    experimental: {
+        ppr: "incremental"
     }
 };
 

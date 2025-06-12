@@ -6,6 +6,8 @@ export const metadata = {
     title: "بلاگ ها"
 }
 
+export const experimental_ppr = true;
+
 function Layout({ children }) {
     return (
         <div>

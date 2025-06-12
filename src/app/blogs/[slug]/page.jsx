@@ -9,15 +9,15 @@ export async function generateMeatadata({ params }) {
     }
 }
 
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
-export async function generateStaticParams() {
-    const posts = await getPosts();
-    const slugs = posts.map((post) => {
-        return { slug: post.slug }
-    });
-    return slugs;
-};
+// export async function generateStaticParams() {
+//     const posts = await getPosts();
+//     const slugs = posts.map((post) => {
+//         return { slug: post.slug }
+//     });
+//     return slugs;
+// };
 
 
 async function SinglePost({ params }) {
