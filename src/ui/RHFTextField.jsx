@@ -1,7 +1,7 @@
 
-function RHFTextField({ name , register , label , errors , validationSchema = {} , type = "text" , dir = "rtl" , required , ...rest}) {
-    const errorMessage = errors?.[name];
-    const hasError = !!(errors && errorMessage);
+function RHFTextField({ name , register , label , errors , type = "text" , dir = "rtl" , required , ...rest}) {
+    const errorMessages = errors?.[name];
+    const hasError = !!(errors && errorMessages);
 
     return (
         <div className={`textField relative ${hasError ? "textField--invalid" : ""}`}>
@@ -12,7 +12,7 @@ function RHFTextField({ name , register , label , errors , validationSchema = {}
             <input 
                 name={name}
                 id={name}
-                { ... register(name , validationSchema) }
+                { ... register(name) }
                 { ...rest }
                 dir={dir}
                 type={type}

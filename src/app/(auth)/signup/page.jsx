@@ -3,17 +3,24 @@
 import Button from "@/ui/Button";
 import RHFTextField from "@/ui/RHFTextField";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 
-// export const metadata = {
-//     title: "ثبت نام"
-// };
 
+const schema = yup.object({
+    name: yup.string().min(3 , "نام و نام خانوادگی حداقل 3 کاراکتر باید باشد").max(40 , "نام و نام خانوادگی حداکثر 40 کاراکتر میتواند باشد").required("نام و نام خانوادگی الزامی است"),
+    email: yup.string().email("ایمیل نامعتبر است").required("ایمیل الزامی است"),
+    password: yup.string().min(8 , "کلمه عبور حداقل باید 8 کاراکتر باشد").required("کلمه عبور الزامی است")
+}).required();
 
 function Signup() {
-    const {register , handleSubmit , formState={ errors} } = useForm();
+    const {register , handleSubmit , formState: {errors } } = useForm({
+        resolver: yupResolver(schema),
+        mode: "onTouched"
+    });
 
-    const onSubmit = (data) => {
-
+    const onSubmit = (values) => {
+        console.log(values);
     }
 
     return (
@@ -26,16 +33,6 @@ function Signup() {
                     register={register}
                     required
                     errors={errors}
-                    validationSchema={{
-                        name: {
-                            required: "لطفا نام و نام خانوادگی را وارد نمایید",
-                            minLength: {
-                                value: 30,
-                                message: "نام و نام خانوادگی بیشتر از 30 کاراکتر نمیتواند باشد"
-                            }
-                            
-                        }
-                    }}
                 />
                 <RHFTextField 
                     name="email"
@@ -45,38 +42,19 @@ function Signup() {
                     dir="ltr"
                     type="email"
                     errors={errors}
-                    validationSchema={{
-                        email: {
-                            required: "لطفا ایمیل معتبر را وارد نمایید",
-                            pattern: {
-                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: "ایمیل معتبر نمی باشد"
-                            }
-                        }
-                    }}
                 />
-                <RHFTextField 
+                <RHFTextField
                     name="password"
                     label= "رمز عبور"
                     register={register}
                     required
                     dir="ltr"
                     type="password"
-                    // errors={errors}
-                    validationSchema={{
-                        password: {
-                            required: "لطفا رمز عبور را وارد نمایید",
-                            minLength: {
-                                value: 8,
-                                message: "رمز عبور حداقل 8 کاراکتر باید باشد"
-                            }
-                        }
-                    }}
-                    className="font-sans"
+                    errors={errors}
                 />
                 <Button className="w-full" variant="primary" type="submit">ثبت نام</Button>
             </form>
-        </div>  
+        </div>
     )
 };
 export default Signup;
