@@ -8,6 +8,7 @@ import * as yup from "yup"
 import { signupApi } from "@/services/authService";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 const schema = yup.object({
@@ -65,6 +66,7 @@ function Signup() {
                 />
                 <Button className="w-full" variant="primary" type="submit">ثبت نام</Button>
             </form>
+            <Link href="/signin" className="text-secondary-500 mt-6 text-center">ورود</Link>
         </div>
     )
 };
