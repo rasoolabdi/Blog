@@ -8,3 +8,7 @@ export function signupApi(data) {
 export function signinApi(data) {
     return http.post("/user/signin" , data).then(({ data }) => data.data);
 };
+
+export function getUserApi() {
+    return http.get("/user/profile").then(({ data }) => data.data);
+}

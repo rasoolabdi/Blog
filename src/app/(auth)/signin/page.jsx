@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
+import SpinnerMini from "@/ui/SpinnerMini";
 
 const schema = yup.object({
     email: yup.string().email("لطفا ایمیل معتبر وارد نمایید").required("لطفا ایمیل را وارد نمایید"),
@@ -14,7 +15,7 @@ const schema = yup.object({
 }).required();
 
 function Signin() {
-    const { register , handleSubmit , formState: {errors} } = useForm({
+    const { register , handleSubmit , formState: {errors , isLoading} } = useForm({
         resolver: yupResolver(schema),
         mode: "onTouched"
     });
@@ -44,7 +45,11 @@ function Signin() {
                     dir="ltr"
                     errors={errors}
                 /> 
-                <Button className="btn btn--primary w-full">تایید</Button>
+                <div>
+                    {isLoading ? (<SpinnerMini />) : (
+                        <Button className="btn btn--primary w-full">تایید</Button>
+                    )}
+                </div>
             </form>
             <Link href="/signup" className="text-secondary-500 mt-6 text-center">ثبت نام</Link>
         </div>
