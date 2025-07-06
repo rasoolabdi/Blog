@@ -9,16 +9,6 @@ export async function generateMeatadata({ params }) {
     }
 }
 
-// export const dynamicParams = false;
-
-// export async function generateStaticParams() {
-//     const posts = await getPosts();
-//     const slugs = posts.map((post) => {
-//         return { slug: post.slug }
-//     });
-//     return slugs;
-// };
-
 
 async function SinglePost({ params }) {
     const post = await getPostBySlug(params.slug);
