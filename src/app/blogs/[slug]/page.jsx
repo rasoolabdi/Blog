@@ -1,6 +1,7 @@
 import { getPostBySlug, getPosts } from "@/services/postServices";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import RelatedPost from "../_components/RelatedPost";
 
 export async function generateMeatadata({ params }) {
     const post = await getPostBySlug(params.slug);
@@ -11,7 +12,8 @@ export async function generateMeatadata({ params }) {
 
 
 async function SinglePost({ params }) {
-    const post = await getPostBySlug(params.slug);
+    const { slug } = await params;
+    const post = await getPostBySlug(slug);
     if(!post) notFound();
 
     return (
@@ -28,6 +30,7 @@ async function SinglePost({ params }) {
                     src={post.coverImageUrl}
                 />
             </div>
+            {post.related.length > 0 ? (<RelatedPost posts={post.related} /> ) : null}
         </div>
     )
 };

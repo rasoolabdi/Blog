@@ -7,7 +7,7 @@ import setCookieOnReq from "utils/setCookieOnReq";
 async function Category({ params , searchParams }) {
     const  { categorySlug }  = await params;
     const searchParam = await searchParams;
-    const queries = queryString.stringify(searchParam) + "&" +`categorySlug=${categorySlug}`;
+    const queries = queryString.stringify(searchParam) + "&" + `categorySlug=${categorySlug}`;
     const queryCookie = await cookies();
     const options = setCookieOnReq(queryCookie);
     const posts = await getPosts(queries ,options);

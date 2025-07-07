@@ -17,7 +17,8 @@ async function BlogPage({ searchParams }) {
         <div>
             {search ? (
                 <p className="font-bold mb-8">
-                    {posts.length === 0 ? "هیچ پستی یافت نشد" : `نشان دادن "${posts.length}" نتیجه برای "${search}"`}
+                    {posts.length === 0 ? "هیچ پستی با این مشخصات یافت نشد" : `نشان دادن "${posts.length}" نتیجه برای`}
+                    <span className="font-bold">&quot;{search}&quot;</span>
                 </p>
             ) : null}
             <p className="mb-4">لیست پست ها</p>
