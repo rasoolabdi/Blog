@@ -2,6 +2,7 @@ import { getPostBySlug, getPosts } from "@/services/postServices";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import RelatedPost from "../_components/RelatedPost";
+import PostComment from "../_components/comment/PostComment";
 
 export async function generateMeatadata({ params }) {
     const post = await getPostBySlug(params.slug);
@@ -31,6 +32,7 @@ async function SinglePost({ params }) {
                 />
             </div>
             {post.related.length > 0 ? (<RelatedPost posts={post.related} /> ) : null}
+            <PostComment post={post} />
         </div>
     )
 };
