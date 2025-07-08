@@ -1,9 +1,15 @@
+"use client";
+
 import Button from "@/ui/Button";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/solid";
 import Comment from "./Comment";
 import classNames from "classnames";
+import Modal from "@/ui/Modal";
+import { useState } from "react";
 
 function PostComment({ post }) {
+    const [open , setOpen] = useState(true);
+
     return (
         <div className="mb-10">
             <div className="flex flex-col items-center lg:flex-row justify-between gap-y-3 mb-8">
@@ -15,6 +21,15 @@ function PostComment({ post }) {
                     <QuestionMarkCircleIcon className="w-5 h-5 ml-1" />
                     <span>ثبت نظر جدید</span>
                 </Button>
+                <Modal 
+                    open={open} 
+                    onClose={() => setOpen(false)}
+                    title="نظر جدید"
+                    description="ثبت نظر جدید"
+                >
+                    content
+                </Modal>
+
             </div>
             <div className="space-y-8 post-comments bg-secondary-0 rounded-xl py-6 px-3 lg:px-6">
                 {post.comments.length > 0 ? (

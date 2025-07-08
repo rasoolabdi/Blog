@@ -3,7 +3,6 @@ import Button from "@/ui/Button";
 import { ArrowUturnRightIcon } from "@heroicons/react/24/outline";
 
 function Comment({ comment }) {
-    console.log(comment)
     return (
         <>
             <div className="flex items-center justify-between mb-5 border-b  border-b-secondary-200/60 pb-2">
@@ -33,7 +32,6 @@ function Comment({ comment }) {
                             <span>پاسخ</span>
                         </Button>
                     )}
-
                 </div>
             </div>
             <p className="text-secondary-700 leading-loose lg:leading-8 text-xs lg:text-base">
