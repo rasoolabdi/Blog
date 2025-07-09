@@ -19,7 +19,9 @@ function Modal({ children , open , onClose , title , description = ""}) {
                             <p className="text-secondary-700 font-bold text-base">{title}</p>
                             <p className="text-secondary-400 text-sm lg:text-base">{ description }</p>
                         </div>
-                        <button>
+                        <button
+                            onClick={onClose}
+                        >
                             <XMarkIcon className="w-6 h-6 text-secondary-500" />
                         </button>
                     </div>

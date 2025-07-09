@@ -6,9 +6,24 @@ import Comment from "./Comment";
 import classNames from "classnames";
 import Modal from "@/ui/Modal";
 import { useState } from "react";
+import CommentForm from "./CommentForm";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 function PostComment({ post }) {
-    const [open , setOpen] = useState(true);
+    const [open , setOpen] = useState(false);
+    const [parent , setParent] = useState(null);
+    const {user} = useAuth();
+    const router = useRouter();
+
+    const addNewCommentHandler = (parent) => {
+        if(!user) {
+            router.push("/signin");
+            return;
+        }
+        setParent(parent);
+        setOpen(true)
+    }
 
     return (
         <div className="mb-10">
@@ -17,6 +32,7 @@ function PostComment({ post }) {
                 <Button
                     variant="outline"
                     className="flex items-center py-2"
+                    onClick={() => addNewCommentHandler(null)}
                 >
                     <QuestionMarkCircleIcon className="w-5 h-5 ml-1" />
                     <span>ثبت نظر جدید</span>
@@ -24,12 +40,11 @@ function PostComment({ post }) {
                 <Modal 
                     open={open} 
                     onClose={() => setOpen(false)}
-                    title="نظر جدید"
-                    description="ثبت نظر جدید"
+                    title={parent ? "پاسخ به نظر" : "ثبت نظر جدید"}
+                    description={parent ? parent.user.name : "لطفا نظر خود را وارد کنید"}
                 >
-                    content
+                    <CommentForm postId={post._id} parentId={parent ? parent._id : null} />
                 </Modal>
-
             </div>
             <div className="space-y-8 post-comments bg-secondary-0 rounded-xl py-6 px-3 lg:px-6">
                 {post.comments.length > 0 ? (
@@ -37,7 +52,10 @@ function PostComment({ post }) {
                         return (
                             <div key={comment._id} >
                                 <div className="border border-secondary-200 rounded-xl p-2 sm:p-4 mb-3">
-                                    <Comment comment={comment} />
+                                    <Comment 
+                                        comment={comment} 
+                                        onAddComment={() => addNewCommentHandler(comment) }
+                                    />
                                 </div>
                                 <div className="post-comments__answer mr-2 sm:mr-8 space-y-3">
                                     {comment.answers.map((item , index) => {
