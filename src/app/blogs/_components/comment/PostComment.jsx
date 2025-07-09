@@ -43,7 +43,11 @@ function PostComment({ post }) {
                     title={parent ? "پاسخ به نظر" : "ثبت نظر جدید"}
                     description={parent ? parent.user.name : "لطفا نظر خود را وارد کنید"}
                 >
-                    <CommentForm postId={post._id} parentId={parent ? parent._id : null} />
+                    <CommentForm 
+                        postId={post._id} 
+                        parentId={parent ? parent._id : null} 
+                        onClose={() => setOpen(false)}
+                    />
                 </Modal>
             </div>
             <div className="space-y-8 post-comments bg-secondary-0 rounded-xl py-6 px-3 lg:px-6">
