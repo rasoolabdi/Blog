@@ -11,4 +11,8 @@ export function signinApi(data) {
 
 export function getUserApi() {
     return http.get("/user/profile").then(({ data }) => data.data);
-}
+};
+
+export function getAllUsersApi(options) {
+    return http.get("/user/list" , options).then(({ data }) => data.data)
+};
