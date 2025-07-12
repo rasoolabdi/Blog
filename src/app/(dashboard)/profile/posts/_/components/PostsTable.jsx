@@ -3,9 +3,9 @@ import Empty from "@/ui/Empty";
 import Table from "@/ui/Table";
 import PostRow from "./PostRow";
 
-async function PostsTable() {
+async function PostsTable({query=""}) {
 
-    const posts = await getPosts();
+    const posts = await getPosts(query);
 
     if(!posts.length) return <Empty resourceName="هیچ پستی" />
 

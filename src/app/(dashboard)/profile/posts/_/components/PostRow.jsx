@@ -1,6 +1,7 @@
 import toLocalDateShort from "utils/dateFormatter";
 import { toPerianDigits } from "utils/numberFormatter";
 import truncateText from "utils/truncateText";
+import { DeletePost, UpdatePost } from "./Buttons";
 
 const { default: Table } = require("@/ui/Table");
 
@@ -30,7 +31,12 @@ function PostRow({ post , index }) {
                     {typeStyle[type].label}
                 </span>
             </td>
-            <td>action</td>
+            <td>  
+                <div className="flex items-center gap-x-3">
+                    <UpdatePost id={post._id} />
+                    <DeletePost id={post._id} />
+                </div>
+            </td>
         </Table.Row>
     )
 };
