@@ -27,7 +27,7 @@ function Search() {
 
     return (
         <form className="relative" onSubmit={formSubmitHandler}>
-            <input 
+            <input
                 type="text"
                 placeholder="جستجو ..."
                 autoComplete="off"
