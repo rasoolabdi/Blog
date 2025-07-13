@@ -4,6 +4,15 @@ import { notFound } from "next/navigation";
 import RelatedPost from "../_components/RelatedPost";
 import PostComment from "../_components/comment/PostComment";
 
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+    const { posts } = await getPosts();
+    const slugs = posts.map((post) => ({ slug: post.slug }));
+    return slugs;
+}
+
 export async function generateMeatadata({ params }) {
     const post = await getPostBySlug(params.slug);
     return {
