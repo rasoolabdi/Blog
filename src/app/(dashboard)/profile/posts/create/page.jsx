@@ -1,4 +1,5 @@
 import BreadCrumbs from "@/ui/BreadCrumbs";
+import CreatePostForm from "./_/CreatePostForm";
 
 function Page() {
     return (
@@ -16,7 +17,7 @@ function Page() {
                     }
                 ]}
             />
-            form create posts
+            <CreatePostForm />
         </div>
     )
 };

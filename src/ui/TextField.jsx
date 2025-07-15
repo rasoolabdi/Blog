@@ -1,7 +1,7 @@
 function TextField({ name , value , onChange , label , isRequired , className , dir = "rtl" , type = "text"}) {
     return (
         <div className="textField">
-            <label htmlFor={name} className="text-secondary-600 text-sm">
+            <label htmlFor={name} className="text-secondary-600 text-sm mb-2 block">
                 {label}
                 {isRequired && <span className="text-error">*</span>}
             </label>
