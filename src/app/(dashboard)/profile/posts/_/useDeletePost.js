@@ -12,6 +12,7 @@ function useDeletePost() {
             queryClient.invalidateQueries({queryKey: ["posts"]})
         },   
         onError: (error) => {
+            console.log(error);
             toast.error(error?.response?.data?.message)
         }
     });

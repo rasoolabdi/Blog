@@ -24,7 +24,7 @@ export function CreatePost() {
     )
 }
 
-export async function DeletePost({ post: {_id: id , title} }) {
+export function DeletePost({ post: {_id: id , title} }) {
     const [open , setOpen] = useState(false);
     const {isDeleting , deletePost } = useDeletePost();
     const router = useRouter();
@@ -35,7 +35,7 @@ export async function DeletePost({ post: {_id: id , title} }) {
                 onClick={() => setOpen(true)}
                 variant="outline"
             >
-                <TrashIcon />
+                <TrashIcon className="text-error" />
             </ButtonIcon>
             <Modal
                 title={`حذف ${title}`}
@@ -61,7 +61,7 @@ export async function DeletePost({ post: {_id: id , title} }) {
     )
 };
 
-export async function UpdatePost({ id }) {
+export function UpdatePost({ id }) {
     return (
         <Link href={`/profile/posts/${id}/edit`}>
             <ButtonIcon variant="outline">
